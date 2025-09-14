@@ -1,0 +1,10 @@
+{% if portfolioItemList %}
+    <ul>
+    {% for pi in portfolioItemList %}
+        <li>{{pi.name}}: </li>
+        <pre>{{pi.description}}</pre>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No portfolio items added.</p>
+{% endif %}
