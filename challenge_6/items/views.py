@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic.edit import FormView
 
 from .models import Hobby
 from .models import PortfolioItem
+from items.forms import ContactForm
 
 apis = [
     {"name": "View Home", "path": "/home"},
@@ -45,3 +47,12 @@ def contact(request, t=None):
 
     context = {"email": email, "apis": apis}
     return render(request, "items/contact.html", context)
+
+class ContactFormView(FormView):
+    template_name = "contactForm.html"
+    form_class = ContactForm
+    seccess_url = "contactForm"
+    
+    def form_valid(self, form):
+        form.log_data()
+        return super().form_valid(form)

@@ -1,43 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dylan's Hobbies</title>
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
-</head>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+  </head>
 
-<body>
-<div class="content">
-<h1>Dylan's Portfolio</h1>
-    <ul>
-    {% for pi in portfolioItemList %}
+  <body>
+    <div class="content">
+      <h1>Dylan's Portfolio</h1>
+      <ul>
+        {% for pi in portfolioItemList %}
         <li>{{pi.name}}</li>
-{#        <pre>{{pi.description}}</pre>#}
-        {% if pi.img_path  %}
-            <img src="{% static pi.img_path %}" alt="{{ pi.name }}" width="150"/>
-        {% endif %}
-    {% endfor %}
-    </ul>
+        {#
+        <pre>{{pi.description}}</pre>
+        #} {% if pi.img_path %}
+        <img src="{% static pi.img_path %}" alt="{{ pi.name }}" width="150" />
+        {% endif %} {% endfor %}
+      </ul>
 
-<button class="button"><a href="./portfolioItemDetail">Details</a></button>
-<br/>
-<div id="home-links">
-    {% for api in apis %}
-        {% if api.name != "View Portfolio Items" %}
+      <button class="button">
+        <a href="./portfolioItemDetail">Details</a>
+      </button>
+      <br />
+      <div id="home-links">
+        {% for api in apis %} {% if api.name != "View Portfolio Items" %}
         <a href="{{ api.path }}">|| {{ api.name }} ||</a>
-        {% endif %}
-    {% endfor %}
-</div>
-</div>
-</body>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>
-
-
-
-
-
-
-
-
