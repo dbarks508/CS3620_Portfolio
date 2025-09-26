@@ -1,0 +1,77 @@
+.content {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.button {
+    padding: 5px;
+    color: darkgreen;
+    margin: 10px;
+}
+
+.button a {
+    text-decoration: none;
+}
+.button a:link {
+    color: darkgreen;
+}
+
+.button a:visited {
+    color: darkgreen;
+}
+
+h1 {
+    color: darkgreen;
+    font-size: 44px;
+}
+
+h3 {
+    font-family: Candara;
+    font-size: 26px;
+}
+
+ul li {
+    font-size: 18px;
+    list-style-type: square;
+    color: goldenrod;
+}
+
+#home-bio {
+    font-size: 16px;
+    width: 75%;
+}
+
+#home-links {
+    border: 2px solid black;
+    width: fit-content;
+    padding: 5px;
+    font-family: "Malgun Gothic";
+    margin: 10px;
+}
+
+#home-links a {
+    text-decoration: none;
+}
+
+#home-links a:link {
+  color: coral;
+}
+
+#home-links a:visited {
+  color: coral;
+}
+
+#home-links a:hover {
+  color: gold;
+}
+
+img{
+    margin: 10px;
+    border: 1px solid black;
+}
+
+p {
+    font-family: "Courier New";
+}
+
+
