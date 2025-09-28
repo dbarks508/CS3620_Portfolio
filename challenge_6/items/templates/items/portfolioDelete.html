@@ -1,0 +1,7 @@
+<h3>Are you sure yu want ot delete item: {object.name}</h3>
+
+<form method="post">
+  {% csrf_token %} <input type="submit" value="Submit Form" />
+</form>
+
+<a href="{% url 'portfolioItem' %}">Cancel</a>

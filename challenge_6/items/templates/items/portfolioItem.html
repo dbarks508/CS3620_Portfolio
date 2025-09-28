@@ -18,12 +18,17 @@
         <pre>{{pi.description}}</pre>
         #} {% if pi.img_path %}
         <img src="{% static pi.img_path %}" alt="{{ pi.name }}" width="150" />
-        {% endif %} {% endfor %}
+        {% endif %}
+        <a href="{% url 'portfolioUpdate' item.pk %}">Update</a>
+        <a href="{% url 'portfolioDelete' item.pk %}">Delete</a>
+        {% endfor %}
       </ul>
 
+      {% comment %}
       <button class="button">
         <a href="./portfolioItemDetail">Details</a>
       </button>
+      {% endcomment %}
       <br />
       <div id="home-links">
         {% for api in apis %} {% if api.name != "View Portfolio Items" %}
