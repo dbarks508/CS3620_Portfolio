@@ -1,0 +1,8 @@
+<h3>Create new Portfolio Item</h3>
+
+<form method="post">
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" value="Create Portfolio Item" />
+</form>
+
+<a href="{% url 'portfolioItem' %}">Cancel</a>

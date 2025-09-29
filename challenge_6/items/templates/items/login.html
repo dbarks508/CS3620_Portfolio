@@ -1,0 +1,16 @@
+<h1>Login</h1>
+
+<p>Please login to alter portfolio items</p>
+
+{% if user.error %}
+<p>Invalid credentials</p>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" value="Login" />
+</form>
+
+<a href="{% url 'portfolioItem' %}">Cancel</a>
+
+<code>For assignment purposes - username: dylan, password: weberstate</code>

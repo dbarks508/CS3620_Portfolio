@@ -17,6 +17,8 @@
       <p>No email added.</p>
       {% endif %}
 
+      <a href="{% url 'contactForm' %}">Or send Dylan a message directly!</a>
+
       <div id="home-links">
         {% for api in apis %} {% if api.name != "View Contact Information" %}
         <a href="{{ api.path }}">|| {{ api.name }} ||</a>

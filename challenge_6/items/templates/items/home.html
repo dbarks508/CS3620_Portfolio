@@ -27,5 +27,15 @@
         {% endif %} {% endfor %}
       </div>
     </div>
+
+    {% if user.is_authenticated %}
+    <div>
+      <p>Ready to logout?</p>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+    {% endif %}
   </body>
 </html>

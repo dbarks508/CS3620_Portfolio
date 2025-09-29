@@ -14,9 +14,8 @@
       <ul>
         {% for hobby in hobbyList %}
         <li>{{hobby.name}}</li>
-        {#
         <pre>{{hobby.description}}</pre>
-        #} {% if hobby.img_path %}
+        {% if hobby.img_path %}
         <img
           src="{% static hobby.img_path %}"
           alt="{{ hobby.name }}"

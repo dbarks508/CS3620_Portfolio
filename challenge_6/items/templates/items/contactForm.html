@@ -1,3 +1,10 @@
 <form method="post">
-  {% csrf_token %} {{form.as_p}} <input type="submit" value="Submit Form" />
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" value="Submit Form" />
 </form>
+
+<a href="{% url 'contact' %}">Cancel</a>
+
+<div>
+  <a href="{% url 'contactForms' %}">View all submitions</a>
+</div>

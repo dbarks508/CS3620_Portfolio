@@ -8,10 +8,11 @@ from .models import PortfolioItem
 from .forms import PortfolioItemForm
 from items.forms import ContactForm, ContactModelForm
 from items.models import Contact
-from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 apis = [
@@ -39,10 +40,6 @@ def portfolioItem(request):
     context = {"portfolioItemList": portfolioItemList, "apis": apis}
     return render(request, "items/portfolioItem.html", context)
 
-def portfolioItemDetail(request):
-    portfolioItemList = PortfolioItem.objects.all()
-    context = {"portfolioItemList": portfolioItemList, "apis": apis}
-    return render(request, "items/portfolioItemDetail.html", context)
 
 def contact(request, t=None):
     email = ""
@@ -56,43 +53,44 @@ def contact(request, t=None):
     context = {"email": email, "apis": apis}
     return render(request, "items/contact.html", context)
 
+# from tutorial
 class ContactFormView(FormView):
     template_name = "items/contactForm.html"
     form_class = ContactModelForm
-    success_url = "/contactForm/"
+    success_url = "/contact/"
     
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
 
-class ContactListView(ListView):
+# from tutorial
+class ContactListView(LoginRequiredMixin, ListView):
     model = Contact
     context_object_name = "contact_data"
     
     def render_to_response(self, context, **responce_kwargs):
+        back = '<a href="/contact/">Back</a>'
         contacts = ""
         for contact in context["contact_data"]:
             contacts += f'<li>{contact.name} || {contact.email} || {contact.message}</li>'
-        return HttpResponse(f'<html><body><ul>{contacts}</ul></body></html>')
+        return HttpResponse(f'<html><body><ul>{contacts}</ul>{back}</body></html>')
     
-class PortfolioListView(ListView):
-    model = PortfolioItem
-    context_object_name = "portfolio_data"
-    template_name = "items/portfolioList"
-    
-class PortfolioCreateView(CreateView):
+# create new pi view class
+class PortfolioCreateView(LoginRequiredMixin, CreateView):
     model = PortfolioItem
     template_name = "items/portfolioCreate.html"
     form_class = PortfolioItemForm
     success_url = "/portfolioItem/"
-        
-class PortfolioUpdateView(UpdateView):
+
+# update existing pi view class
+class PortfolioUpdateView(LoginRequiredMixin, UpdateView):
     model = PortfolioItem
     template_name = "items/portfolioUpdate.html"
     form_class = PortfolioItemForm
     success_url = "/portfolioItem/"
-    
-class PortfolioDeleteView(DeleteView):
+
+# delete existing pi view class
+class PortfolioDeleteView(LoginRequiredMixin, DeleteView):
     model = PortfolioItem
     template_name = "items/portfolioDelete.html"
     success_url = "/portfolioItem/"
